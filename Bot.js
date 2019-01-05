@@ -33,8 +33,7 @@ client.on('message', msg => {
     }
 }
 });
- 
- 
+  
 //Best Rainbow Bot .
 client.on('message', message => {//new msg event
 if(!message.channel.guild) return;
@@ -145,5 +144,28 @@ client.on('message', message => {
 
 });
 }});
+
+client.on('message', message => {
+   let embed = new Discord.RichEmbed()
+
+    let args = message.content.split(' ').slice(1).join(' ');
+     if(!message.channel.guild) return;
+if(message.content.split(' ')[0] == 'r#bc') {
+         message.react("??")
+          let embed = new Discord.RichEmbed()
+    .setColor("#FF00FF")
+    .setThumbnail(message.author.avatarURL)   
+                                      .addField('تم الارسال :', "<@" + message.author.id + ">")
+                 message.channel.sendEmbed(embed);
+        message.guild.members.forEach(m => {
+            var bc = new Discord.RichEmbed()
+.addField('** »Sender  :**', `***  ${message.author.username}#${message.author.discriminator}***`)
+            .addField('*** »Server  :***', `*** ? ${message.guild.name}***`)               
+    .setColor('#ff0000')
+                 .addField('»الرسالة', args)
+            m.send(``,{embed: bc});
+        });
+    }
+})
 
 client.login('')
