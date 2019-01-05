@@ -159,13 +159,66 @@ if(message.content.split(' ')[0] == 'r#bc') {
                  message.channel.sendEmbed(embed);
         message.guild.members.forEach(m => {
             var bc = new Discord.RichEmbed()
-.addField('** »Sender  :**', `***  ${message.author.username}#${message.author.discriminator}***`)
-            .addField('*** »Server  :***', `*** ? ${message.guild.name}***`)               
+.addField('** »المرسل  :**', `***  ${message.author.username}#${message.author.discriminator}***`)
+            .addField('*** »السيرفر  :***', `*** ? ${message.guild.name}***`)               
     .setColor('#ff0000')
                  .addField('»الرسالة', args)
             m.send(``,{embed: bc});
         });
     }
 })
+
+client.on('guildCreate', guild => {
+  var embed = new Discord.RichEmbed()
+  .setColor(0x5500ff)
+  .setDescription(`**شكراً لك لإضافه البوت الى سيرفرك**`)
+      guild.owner.send(embed)
+});
+
+client.on('message', message => {
+                                if(!message.channel.guild) return;
+                        if (message.content.startsWith(prefix + "ping")) {
+                            if(!message.channel.guild) return;
+                            var msg = `${Date.now() - message.createdTimestamp}`
+                            var api = `${Math.round(client.ping)}`
+                            if (message.author.bot) return;
+                        let embed = new Discord.RichEmbed()
+                        .setAuthor(message.author.username,message.author.avatarURL)
+                        .setColor('RANDOM')
+                        .addField('**Time Taken:**',msg + " ms 📶 ")
+                        .addField('**WebSocket:**',api + " ms 📶 ")
+         message.channel.send({embed:embed});
+                        }
+ });
+
+client.on('message', message => {
+     if (message.content === (prefix + "bot")) {
+         if(!message.channel.guild) return;
+     let embed = new Discord.RichEmbed()
+  .setColor("#8650a7")
+  .addField("** ✅ Servers: **" , client.guilds.size)
+  .addField("** ✅ Users: **" , client.users.size)
+  .addField("** ✅ Channels: **" , client.channels.size)
+    .addField("** 🚀 Ping **" , Date.now() - message.createdTimestamp)
+    .setTimestamp()
+  message.channel.sendEmbed(embed);
+    }
+});
+
+client.on('message', message => {
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+// -say
+  if (command === "say") {
+          message.delete()
+    message.channel.sendMessage(args.join(" ")).catch(console.error);
+      }
+});
 
 client.login(process.env.BOT_TOKEN);
