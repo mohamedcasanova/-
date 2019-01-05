@@ -168,4 +168,4 @@ if(message.content.split(' ')[0] == 'r#bc') {
     }
 })
 
-client.login('')
+client.login(process.env.BOT_TOKEN);
