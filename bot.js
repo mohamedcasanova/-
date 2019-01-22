@@ -4,7 +4,7 @@ const fs = require('fs');
 const prefix = "r#";
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag} !`);
-          client.user.setActivity("νι¢тσяу ¢ℓαη , r#help .",{type: 'WATCHING'});
+          client.user.setActivity("νι¢тσяу ¢ℓαη By !ν¢ |Bako gaming 🎓#1033 , r#help .",{type: 'WATCHING'});
  
   });
  
