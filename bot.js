@@ -206,7 +206,7 @@ client.on('message', message => {
 });
 
   client.on('message',function(message) {
-    var prefix = "-";
+    var prefix = "r#";
     let args = message.content.split(" ").slice(1).join(" ");
     if(message.content.startsWith(prefix + "say")) {
     if(!args) return;
