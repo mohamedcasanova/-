@@ -205,4 +205,13 @@ client.on('message', message => {
     }
 });
 
+  client.on('message',function(message) {
+    var prefix = "-";
+    let args = message.content.split(" ").slice(1).join(" ");
+    if(message.content.startsWith(prefix + "say")) {
+    if(!args) return;
+    message.channel.send(`**${args}**`);
+    }
+    });
+
 client.login(process.env.BOT_TOKEN);
